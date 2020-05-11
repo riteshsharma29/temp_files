@@ -15,6 +15,22 @@ with open("access.log", "r") as file:
         output['IP']['Host'] = s[0].replace("['","")
         o.write(json.dumps(output))
 '''
+##############################################################################
+'code to format json object'
+
+import json
+import re
+import codecs
+
+json_file = codecs.open('formatted.json','w',encoding='utf-8')
+
+with open('unformatted.json', 'r', encoding='utf-8') as content_file:
+    c = content_file.read()
+    c = json.loads(c)
+    formatted_json = json.dumps(c, indent=4)
+    json_file.write(formatted_json)
+
+################################################################################
 
 log_file = codecs.open('access.log','r',encoding='utf-8')
 o_file = codecs.open('heap.json','w',encoding='utf-8')
